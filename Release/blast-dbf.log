@@ -1,0 +1,7 @@
+﻿  blast-dbf.c
+C:\Users\Silas\blast-dbf-win\blast-dbf.c(105,17): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Silas\blast-dbf-win\blast-dbf.c(106,18): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  blast.c
+  Generating Code...
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
+  blast-dbf.vcxproj -> C:\Users\Silas\blast-dbf-win\Release\blast-dbf.exe

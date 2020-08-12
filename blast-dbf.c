@@ -20,7 +20,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+//#include <unistd.h>
 #include <stdint.h>
 
 #include "blast.h"
@@ -63,7 +63,8 @@ int dbc2dbf(FILE* input, FILE* output) {
     read = fseek(input, 0, SEEK_SET);
     err = ferror(input);
 
-    unsigned char buf[header];
+    //unsigned char buf[header];
+    unsigned char *buf = malloc(header);
 
     read = fread(buf, 1, header, input);
     err = ferror(input);
@@ -73,17 +74,19 @@ int dbc2dbf(FILE* input, FILE* output) {
     read = fseek(input, header + 4, SEEK_SET);
     err = ferror(input);
 
-    /* decompress */
+    // decompress 
     ret = blast(inf, input, outf, output);
     if (ret != 0) fprintf(stderr, "blast error: %d\n", ret);
 
-    /* see if there are any leftover bytes */
+    // see if there are any leftover bytes 
     n = 0;
     while (fgetc(input) != EOF) n++;
     if (n) fprintf(stderr, "blast warning: %d unused bytes of input\n", n);
 
     // return code from blast()
     return ret;
+
+    return 0;
 }
 
 /* Print program usage */
@@ -103,10 +106,10 @@ int main(int argc, char **argv)
         output = fopen(argv[2], "wb");
     }
     /* if stdin is a terminal, it was expecting file names */
-    else if( isatty(STDIN_FILENO) ) {
+    /*else if( isatty(STDIN_FILENO) ) {
         help(argv[0]);
         exit(1);
-    }
+    }*/
     /* not a terminal,the stdin is being redirected */
     else
     {
